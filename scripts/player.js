@@ -54,36 +54,56 @@ class Player {
             ctx.save();
             ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
 
+            // Ferrari-style sports car body
             const bodyGradient = ctx.createLinearGradient(-this.width / 2, -this.height / 2, this.width / 2, this.height / 2);
-            bodyGradient.addColorStop(0, '#003399');
-            bodyGradient.addColorStop(1, '#66a3ff');
+            bodyGradient.addColorStop(0, '#b30000'); // dark red
+            bodyGradient.addColorStop(1, '#ff0000'); // bright red
             ctx.fillStyle = bodyGradient;
-            ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
 
+            // Sleek, low profile shape
+            ctx.beginPath();
+            ctx.moveTo(-this.width / 2, this.height / 4);
+            ctx.lineTo(-this.width / 3, -this.height / 2);
+            ctx.lineTo(this.width / 3, -this.height / 2);
+            ctx.lineTo(this.width / 2, this.height / 4);
+            ctx.closePath();
+            ctx.fill();
+
+            // Hood vents
+            ctx.fillStyle = '#660000';
+            ctx.fillRect(-this.width / 6, -this.height / 2 + 5, this.width / 12, this.height / 6);
+            ctx.fillRect(this.width / 24, -this.height / 2 + 5, this.width / 12, this.height / 6);
+
+            // Windows
             const windowGradient = ctx.createLinearGradient(-this.width / 4, -this.height / 2, this.width / 4, -this.height / 6);
             windowGradient.addColorStop(0, '#99ccff');
             windowGradient.addColorStop(1, '#cce6ff');
             ctx.fillStyle = windowGradient;
             ctx.fillRect(-this.width / 4, -this.height / 2, this.width / 2, this.height / 3);
 
+            // Wheels
             ctx.fillStyle = '#111';
-            const wheelRadius = this.height / 4;
+            const wheelRadius = this.height / 5;
             ctx.beginPath();
-            ctx.arc(-this.width / 3, this.height / 2 - wheelRadius, wheelRadius, 0, Math.PI * 2);
+            ctx.ellipse(-this.width / 3, this.height / 3, wheelRadius, wheelRadius / 2, 0, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#555';
             ctx.beginPath();
-            ctx.arc(-this.width / 3, this.height / 2 - wheelRadius, wheelRadius / 2, 0, Math.PI * 2);
+            ctx.ellipse(-this.width / 3, this.height / 3, wheelRadius / 2, wheelRadius / 4, 0, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.fillStyle = '#111';
             ctx.beginPath();
-            ctx.arc(this.width / 3, this.height / 2 - wheelRadius, wheelRadius, 0, Math.PI * 2);
+            ctx.ellipse(this.width / 3, this.height / 3, wheelRadius, wheelRadius / 2, 0, 0, Math.PI * 2);
             ctx.fill();
             ctx.fillStyle = '#555';
             ctx.beginPath();
-            ctx.arc(this.width / 3, this.height / 2 - wheelRadius, wheelRadius / 2, 0, Math.PI * 2);
+            ctx.ellipse(this.width / 3, this.height / 3, wheelRadius / 2, wheelRadius / 4, 0, 0, Math.PI * 2);
             ctx.fill();
+
+            // Spoiler
+            ctx.fillStyle = '#800000';
+            ctx.fillRect(-this.width / 4, this.height / 4, this.width / 2, this.height / 20);
 
             ctx.restore();
         }

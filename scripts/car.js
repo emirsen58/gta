@@ -135,35 +135,52 @@ class Car {
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
         ctx.rotate(this.angle * Math.PI / 180);
 
+        // SUV style body (Jeep/Mercedes G-Class)
         const bodyGradient = ctx.createLinearGradient(-this.width / 2, -this.height / 2, this.width / 2, this.height / 2);
-        bodyGradient.addColorStop(0, '#990000');
-        bodyGradient.addColorStop(1, '#ff4d4d');
+        bodyGradient.addColorStop(0, '#660000'); // dark red
+        bodyGradient.addColorStop(1, '#cc0000'); // bright red
         ctx.fillStyle = bodyGradient;
-        ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
 
+        // Boxy shape with roof rack
+        ctx.beginPath();
+        ctx.moveTo(-this.width / 2, this.height / 4);
+        ctx.lineTo(-this.width / 2, -this.height / 3);
+        ctx.lineTo(-this.width / 4, -this.height / 2);
+        ctx.lineTo(this.width / 4, -this.height / 2);
+        ctx.lineTo(this.width / 2, -this.height / 3);
+        ctx.lineTo(this.width / 2, this.height / 4);
+        ctx.closePath();
+        ctx.fill();
+
+        // Roof rack
+        ctx.fillStyle = '#330000';
+        ctx.fillRect(-this.width / 3, -this.height / 2 - 5, this.width / 1.5, 5);
+
+        // Windows
         const windowGradient = ctx.createLinearGradient(-this.width / 4, -this.height / 2, this.width / 4, -this.height / 6);
         windowGradient.addColorStop(0, '#ff9999');
         windowGradient.addColorStop(1, '#ffcccc');
         ctx.fillStyle = windowGradient;
         ctx.fillRect(-this.width / 4, -this.height / 2, this.width / 2, this.height / 3);
 
+        // Wheels
         ctx.fillStyle = '#111';
         const wheelRadius = this.height / 4;
         ctx.beginPath();
-        ctx.arc(-this.width / 3, this.height / 2 - wheelRadius, wheelRadius, 0, Math.PI * 2);
+        ctx.arc(-this.width / 3, this.height / 3, wheelRadius, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#555';
         ctx.beginPath();
-        ctx.arc(-this.width / 3, this.height / 2 - wheelRadius, wheelRadius / 2, 0, Math.PI * 2);
+        ctx.arc(-this.width / 3, this.height / 3, wheelRadius / 2, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.fillStyle = '#111';
         ctx.beginPath();
-        ctx.arc(this.width / 3, this.height / 2 - wheelRadius, wheelRadius, 0, Math.PI * 2);
+        ctx.arc(this.width / 3, this.height / 3, wheelRadius, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = '#555';
         ctx.beginPath();
-        ctx.arc(this.width / 3, this.height / 2 - wheelRadius, wheelRadius / 2, 0, Math.PI * 2);
+        ctx.arc(this.width / 3, this.height / 3, wheelRadius / 2, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.restore();
